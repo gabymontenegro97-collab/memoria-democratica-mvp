@@ -12,6 +12,7 @@ import {
   Search,
   Lock,
 } from "lucide-react";
+import HeroSection from "@/components/HeroSection";
 
 const problemCards = [
   {
@@ -70,95 +71,43 @@ const solutionCards = [
 ];
 
 const profiles = [
-  { icon: "👤", label: "Víctimas", desc: "Que necesitan que su historia no se pierda" },
-  { icon: "👨‍👩‍👧", label: "Familiares", desc: "Que buscan justicia y reconocimiento" },
-  { icon: "⚖️", label: "Defensores DDHH", desc: "Que documentan y litigan casos" },
-  { icon: "🔬", label: "Investigadores", desc: "Que analizan patrones y estructuras" },
-  { icon: "📰", label: "Periodistas", desc: "Que relatan la historia con evidencia" },
-  { icon: "🌎", label: "Sociedad civil", desc: "Que exige verdad, justicia y reparación" },
+  { icon: "👤", label: "Víctimas",        desc: "Que necesitan que su historia no se pierda"  },
+  { icon: "👨‍👩‍👧", label: "Familiares",      desc: "Que buscan justicia y reconocimiento"       },
+  { icon: "⚖️", label: "Defensores DDHH", desc: "Que documentan y litigan casos"               },
+  { icon: "🔬", label: "Investigadores",  desc: "Que analizan patrones y estructuras"          },
+  { icon: "📰", label: "Periodistas",     desc: "Que relatan la historia con evidencia"        },
+  { icon: "🌎", label: "Sociedad civil",  desc: "Que exige verdad, justicia y reparación"      },
 ];
 
-const stats = [
-  { value: "4,847", label: "Testimonios registrados" },
-  { value: "23,412", label: "Documentos integrados" },
-  { value: "892", label: "Casos verificados" },
-  { value: "2014–2024", label: "Período documentado" },
+const heroStats = [
+  { value: "4,847",    label: "Testimonios registrados" },
+  { value: "23,412",   label: "Documentos integrados"   },
+  { value: "892",      label: "Casos verificados"       },
+  { value: "2014–2024",label: "Período documentado"     },
 ];
 
 export default function LandingPage() {
   return (
     <div className="bg-archive text-gray-800">
 
-      {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden paper-texture paper-lines">
-        {/* Subtle gradient wash */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(160deg, rgba(11,30,109,0.04) 0%, transparent 60%)" }}
-        />
+      {/* ── Hero animado ─────────────────────────────────────────────────── */}
+      <HeroSection />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-10">
-            <div className="w-px h-5 bg-gold" />
-            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold">
-              Sistema Nacional de Memoria Democrática · Venezuela
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-inst-blue leading-[1.05] tracking-tight mb-8 max-w-4xl">
-            La memoria
-            <br />
-            <span className="text-inst-blue/70 font-light italic">está viva.</span>
-          </h1>
-
-          {/* Gold rule */}
-          <div className="w-20 h-0.5 bg-gold mb-8" />
-
-          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-12 max-w-2xl">
-            Una infraestructura digital para preservar, documentar y hacer trazable
-            la memoria histórica de Venezuela — para que el relato del pasado no sea
-            monopolizado por el poder.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Link
-              href="/dashboard"
-              className="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-inst-blue hover:bg-rep-blue text-white font-semibold text-sm tracking-wide rounded-sm shadow-lg shadow-inst-blue/20 transition-all"
-            >
-              Explorar la demo
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <Link
-              href="/testimonio"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 border-2 border-inst-blue/30 hover:border-gold text-inst-blue font-semibold text-sm tracking-wide rounded-sm transition-all hover:bg-gold/5"
-            >
-              <FileText className="w-4 h-4" />
-              Enviar testimonio
-            </Link>
-          </div>
-
-          {/* Stats strip */}
-          <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 border border-doc-gray divide-x divide-doc-gray bg-white shadow-sm">
-            {stats.map((s, i) => (
-              <div key={s.label} className="px-6 py-5">
-                <div className="text-2xl sm:text-3xl font-bold text-inst-blue font-mono mb-1">{s.value}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">{s.label}</div>
+      {/* ── Stats strip ──────────────────────────────────────────────────── */}
+      <section className="bg-white border-y border-doc-gray">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 divide-x divide-doc-gray">
+          {heroStats.map((s) => (
+            <div key={s.label} className="px-8 py-6">
+              <div className="text-2xl sm:text-3xl font-bold text-inst-blue font-mono mb-1">
+                {s.value}
               </div>
-            ))}
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="flex items-center gap-3 mt-14">
-            <div className="w-px h-8 bg-gold/40" />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-medium">Explorar</span>
-          </div>
+              <div className="text-[11px] text-gray-400 uppercase tracking-wider">{s.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── El problema ───────────────────────────────────────────────────── */}
+      {/* ── El problema ──────────────────────────────────────────────────── */}
       <section className="py-28 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14">
@@ -177,10 +126,7 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {problemCards.map((card) => (
-              <div
-                key={card.title}
-                className="inst-card card-gold-accent p-7 rounded-sm"
-              >
+              <div key={card.title} className="inst-card card-gold-accent p-7 rounded-sm">
                 <div className="w-10 h-10 rounded-sm bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
                   <card.icon className="w-5 h-5 text-gold" />
                 </div>
@@ -195,7 +141,7 @@ export default function LandingPage() {
       {/* Gold divider */}
       <div className="gold-rule max-w-7xl mx-auto" />
 
-      {/* ── La solución ───────────────────────────────────────────────────── */}
+      {/* ── La solución ──────────────────────────────────────────────────── */}
       <section className="py-28 px-4 sm:px-6 lg:px-8 bg-archive paper-texture">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14">
@@ -214,10 +160,7 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {solutionCards.map((card) => (
-              <div
-                key={card.title}
-                className="inst-card card-gold-accent p-7 rounded-sm bg-white"
-              >
+              <div key={card.title} className="inst-card card-gold-accent p-7 rounded-sm bg-white">
                 <div className="w-10 h-10 rounded-sm bg-inst-blue/5 border border-inst-blue/15 flex items-center justify-center mb-5">
                   <card.icon className="w-5 h-5 text-inst-blue" />
                 </div>
@@ -229,15 +172,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Stats band ────────────────────────────────────────────────────── */}
+      {/* ── Stats band ───────────────────────────────────────────────────── */}
       <section className="bg-inst-blue py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
             {[
-              { value: "4,847", label: "Testimonios", sub: "registrados en el sistema" },
-              { value: "23,412", label: "Documentos", sub: "integrados y clasificados" },
-              { value: "892", label: "Casos", sub: "verificados y publicados" },
-              { value: "156", label: "Patrones", sub: "detectados por IA" },
+              { value: "4,847",  label: "Testimonios", sub: "registrados en el sistema"  },
+              { value: "23,412", label: "Documentos",  sub: "integrados y clasificados"  },
+              { value: "892",    label: "Casos",       sub: "verificados y publicados"   },
+              { value: "156",    label: "Patrones",    sub: "detectados por IA"          },
             ].map((s) => (
               <div key={s.label} className="bg-inst-blue px-8 py-8 text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-white font-mono mb-1">{s.value}</div>
@@ -249,7 +192,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Para quién ────────────────────────────────────────────────────── */}
+      {/* ── Para quién ───────────────────────────────────────────────────── */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
@@ -262,10 +205,7 @@ export default function LandingPage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {profiles.map((p) => (
-              <div
-                key={p.label}
-                className="inst-card p-6 text-center rounded-sm"
-              >
+              <div key={p.label} className="inst-card p-6 text-center rounded-sm">
                 <div className="text-2xl mb-3">{p.icon}</div>
                 <div className="text-sm font-semibold text-inst-blue mb-1">{p.label}</div>
                 <div className="text-xs text-gray-500 leading-snug">{p.desc}</div>
@@ -291,7 +231,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── CTA final ─────────────────────────────────────────────────────── */}
+      {/* ── CTA final ────────────────────────────────────────────────────── */}
       <section className="bg-inst-blue py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <div className="w-12 h-px bg-gold mx-auto mb-10" />
