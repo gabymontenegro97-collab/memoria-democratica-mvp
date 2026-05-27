@@ -108,17 +108,27 @@ export default function HeroSection() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Brief delay so CSS animations start after paint
     const t = setTimeout(() => setReady(true), 60);
     return () => clearTimeout(t);
   }, []);
 
+  // Helper: standard fade-up for secondary elements
+  const fadeUp = (delay: string, duration = "0.7s") =>
+    ready
+      ? { animation: `fade-up ${duration} ease-out ${delay} both` }
+      : { opacity: 0 as const };
+
+  // Helper: cinematic word-appear for title words
+  const wordIn = (delay: number) =>
+    ready
+      ? { animation: `word-appear 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}s both` }
+      : { opacity: 0 as const };
+
   return (
     <section className="relative overflow-hidden bg-archive min-h-screen flex items-center">
-      {/* Animated network */}
       <MemoryNetworkBackground />
 
-      {/* Floating icons — only on large screens */}
+      {/* Floating icons — large screens only */}
       {FLOATING.map(({ Icon, pos, dur, delay, size }, i) => (
         <div
           key={i}
@@ -137,43 +147,55 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 lg:pt-36 lg:pb-28">
 
-        {/* Eyebrow */}
+        {/* ── Institutional nameplate ───────────────────────────────────── */}
         <div
-          className="flex items-center gap-3 mb-10"
-          style={ready ? { animation: "fade-up 0.7s ease-out 0.05s both" } : { opacity: 0 }}
+          className="mb-12"
+          style={fadeUp("0.08s", "0.8s")}
         >
-          <div className="w-px h-5 bg-gold" />
-          <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold">
-            Sistema Nacional de Memoria Democrática · Venezuela
-          </span>
+          <div className="flex items-stretch gap-4">
+            {/* 3px gold accent bar — stretches to full block height */}
+            <div className="w-[3px] bg-gold shrink-0 rounded-full" />
+
+            <div className="space-y-2">
+              {/* Primary name */}
+              <p className="text-sm sm:text-base lg:text-lg font-bold uppercase tracking-[0.1em] text-inst-blue leading-tight">
+                Sistema Nacional de Memoria Democrática
+              </p>
+              {/* Country qualifier */}
+              <div className="flex items-center gap-2.5">
+                <span className="w-5 h-px bg-gold block shrink-0" />
+                <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">
+                  Venezuela
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Headline */}
+        {/* ── Main title: word-by-word cinematic entrance ───────────────── */}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-inst-blue leading-[1.05] tracking-tight mb-8 max-w-4xl">
-          <span
-            className="block"
-            style={ready ? { animation: "fade-up 0.8s ease-out 0.18s both" } : { opacity: 0 }}
-          >
-            La memoria
+          {/* Line 1 */}
+          <span className="block">
+            <span className="inline-block mr-[0.22em]" style={wordIn(0.52)}>La</span>
+            <span className="inline-block"            style={wordIn(0.80)}>memoria</span>
           </span>
-          <span
-            className="block text-inst-blue/55 font-light italic"
-            style={ready ? { animation: "fade-up 0.8s ease-out 0.42s both" } : { opacity: 0 }}
-          >
-            está viva.
+          {/* Line 2 */}
+          <span className="block text-inst-blue/55 font-light italic">
+            <span className="inline-block mr-[0.22em]" style={wordIn(1.10)}>está</span>
+            <span className="inline-block"            style={wordIn(1.38)}>viva.</span>
           </span>
         </h1>
 
         {/* Gold rule */}
         <div
           className="w-20 h-0.5 bg-gold mb-8"
-          style={ready ? { animation: "fade-up 0.6s ease-out 0.58s both" } : { opacity: 0 }}
+          style={fadeUp("1.58s", "0.6s")}
         />
 
         {/* Subtitle */}
         <p
           className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-10 max-w-2xl"
-          style={ready ? { animation: "fade-up 0.7s ease-out 0.68s both" } : { opacity: 0 }}
+          style={fadeUp("1.72s")}
         >
           Una infraestructura digital para preservar, conectar y democratizar la memoria
           histórica de Venezuela — para que el relato del pasado no sea monopolizado por el poder.
@@ -182,12 +204,12 @@ export default function HeroSection() {
         {/* AI typewriter prompt */}
         <div
           className="mb-12"
-          style={ready ? { animation: "fade-up 0.7s ease-out 0.82s both" } : { opacity: 0 }}
+          style={fadeUp("1.88s")}
         >
           <div className="ai-prompt-box inline-flex items-start gap-2.5 px-4 py-3 rounded-sm">
             <span className="text-gold font-mono text-sm mt-px select-none leading-none">›</span>
             <div className="font-mono text-sm text-inst-blue/65 min-h-[1.3rem] leading-relaxed">
-              {typewriterText || " "}
+              {typewriterText || " "}
               <span
                 aria-hidden="true"
                 className="inline-block w-[2px] h-[1em] bg-gold align-middle ml-0.5 translate-y-[-1px]"
@@ -200,7 +222,7 @@ export default function HeroSection() {
         {/* CTAs */}
         <div
           className="flex flex-col sm:flex-row items-start gap-4"
-          style={ready ? { animation: "fade-up 0.7s ease-out 0.96s both" } : { opacity: 0 }}
+          style={fadeUp("2.05s")}
         >
           <Link
             href="/dashboard"
@@ -221,7 +243,7 @@ export default function HeroSection() {
         {/* Scroll cue */}
         <div
           className="flex items-center gap-3 mt-16"
-          style={ready ? { animation: "fade-up 0.6s ease-out 1.15s both" } : { opacity: 0 }}
+          style={fadeUp("2.22s", "0.6s")}
         >
           <div className="w-px h-8 bg-gold/35" />
           <span className="text-[10px] uppercase tracking-[0.22em] text-gray-400 font-medium">
