@@ -3,35 +3,38 @@ import { Archive } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800/60 bg-slate-950 py-12 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+    <footer className="bg-inst-blue mt-auto">
+      {/* Gold top rule */}
+      <div className="h-px bg-gold/40 w-full" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 rounded-md bg-blue-600/15 border border-blue-500/25 flex items-center justify-center">
-                <Archive className="w-3.5 h-3.5 text-blue-400" />
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 rounded-sm border border-gold/40 bg-gold/10 flex items-center justify-center">
+                <Archive className="w-4 h-4 text-gold" />
               </div>
-              <span className="text-sm font-semibold text-slate-200">
-                Memoria Democrática
-              </span>
+              <div>
+                <div className="text-sm font-semibold text-white leading-tight">Memoria Democrática</div>
+                <div className="text-[9px] text-gold/60 uppercase tracking-[0.15em]">Sistema Nacional</div>
+              </div>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
-              Infraestructura digital para preservar la memoria histórica
-              venezolana. Trazable, verificable y accesible para víctimas,
-              defensores e investigadores.
+            <p className="text-sm text-white/50 leading-relaxed max-w-xs">
+              Infraestructura digital para preservar la memoria histórica venezolana. Trazable, verificable y accesible para víctimas, defensores e investigadores.
             </p>
-            <p className="text-xs text-slate-600 mt-4 font-mono">
-              Sistema Nacional · Versión Demo 0.1
+            <div className="mt-5 w-10 h-px bg-gold/30" />
+            <p className="text-[10px] text-white/30 font-mono mt-3 tracking-wider">
+              Versión Demo 0.1
             </p>
           </div>
 
           {/* Nav */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-widest text-slate-500 mb-3 font-semibold">
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-gold/70 mb-5 font-semibold">
               Plataforma
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {[
                 { href: "/dashboard", label: "Dashboard analítico" },
                 { href: "/testimonio", label: "Enviar testimonio" },
@@ -41,7 +44,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs text-slate-400 hover:text-slate-200 transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -52,38 +55,36 @@ export default function Footer() {
 
           {/* Status */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-widest text-slate-500 mb-3 font-semibold">
+            <h4 className="text-[10px] uppercase tracking-[0.15em] text-gold/70 mb-5 font-semibold">
               Estado del sistema
             </h4>
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-2">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
-                <span className="text-xs text-slate-400">Demo activa</span>
+                <span className="text-sm text-white/60">Demo activa</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-400/50" />
-                <span className="text-xs text-slate-500">
-                  Backend: no conectado
-                </span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-gold/50" />
+                <span className="text-sm text-white/40">Backend: no conectado</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-violet-400/50" />
-                <span className="text-xs text-slate-500">IA: simulada</span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                <span className="text-sm text-white/40">IA: simulada</span>
               </div>
             </div>
-            <p className="text-[10px] text-slate-600 mt-5 leading-relaxed">
-              Los datos mostrados son ficticios. Esta es una demo visual para
-              presentación a inversores y aliados estratégicos.
+            <p className="text-[10px] text-white/25 mt-6 leading-relaxed">
+              Los datos mostrados son ficticios. Esta es una demo visual para presentación a inversores y aliados estratégicos.
             </p>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-slate-600">
+        {/* Bottom bar */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs text-white/30">
             © 2025 Sistema Nacional de Memoria Democrática
           </p>
-          <p className="text-xs text-slate-700 font-mono">
-            Todos los datos son ficticios · Solo demo
+          <p className="text-[10px] text-white/20 font-mono tracking-wider">
+            TODOS LOS DATOS SON FICTICIOS · SOLO DEMO
           </p>
         </div>
       </div>
